@@ -14,7 +14,7 @@ import { find } from 'rxjs';
 })
 export class AppComponent {
   users = DUMMY_USERS;
-  selectedUser: string  = "";
+  selectedUser?: string;
 
   findName(id: string) {
     const foundName = this.users.find(user => user.id === id)?.name;
