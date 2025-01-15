@@ -3,7 +3,6 @@ import { HeaderComponent } from './header/header.component';
 import { UserComponent } from './user/user.component';
 import { DUMMY_USERS } from './dummy-users';
 import { TasksComponent } from "./tasks/tasks.component";
-import { find } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +13,12 @@ import { find } from 'rxjs';
 })
 export class AppComponent {
   users = DUMMY_USERS;
-  selectedUser?: string;
+  selectedUserId = '';
+
+  get selectedUser() {
+    const foundUser = this.users.find(user => user.id === this.selectedUserId);
+    return foundUser ? foundUser : "";
+  }
 
   findName(id: string) {
     const foundName = this.users.find(user => user.id === id)?.name;
@@ -23,7 +27,7 @@ export class AppComponent {
 
   onSelectUser(id: string) {
     console.log('User selected:', id);
-    this.selectedUser = this.findName(id);
+    this.selectedUserId = id;
 
   }
 }
