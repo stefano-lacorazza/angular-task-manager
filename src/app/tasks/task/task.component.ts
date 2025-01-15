@@ -16,5 +16,5 @@ type Task = {
   styleUrl: './task.component.css'
 })
 export class TaskComponent {
-  @Input() title!: string;
+  @Input({required: true}) task!: Task;
 }
